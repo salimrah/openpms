@@ -53,7 +53,7 @@ CREATE TABLE `prj_project_history` (
 
 CREATE TABLE `tsk_task_history` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`tsk_task_id` int(11)not null,
+	`tsk_task_id` int(11) not null,
 	`short_name` VARCHAR(5) NOT NULL,
 	`description` TEXT NOT NULL,
 	`tsk_status_id` INT(11) NOT NULL,
