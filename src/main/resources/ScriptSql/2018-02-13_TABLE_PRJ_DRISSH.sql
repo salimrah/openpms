@@ -5,10 +5,10 @@ CREATE TABLE `prj_project` (
 	`prj_status_id` INT(11) NOT NULL,
 	`expected_start_date` DATE NOT NULL,
 	`expected_end_date` DATE NOT NULL,
-	`actual_start_date` ,
-	`actual_end_date` ,
+	`actual_start_date` DATE,
+	`actual_end_date` DATE,
 	`open_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`update_date` ,
+	`update_date` DATE ,
 	`created_by` INT(11),
 	`update_by` INT(11),
 	PRIMARY KEY (`id`)
@@ -23,8 +23,4 @@ CREATE TABLE `prj_status` (
 );
 
 ALTER TABLE `prj_project`
-	ADD CONSTRAINT `FK_STATUS` FOREIGN KEY (`prj_status_id`) REFERENCES `prj_status` (`id`);
-	
-	
-
-
+ADD CONSTRAINT `FK_STATUS` FOREIGN KEY (`prj_status_id`) REFERENCES `prj_status` (`id`);

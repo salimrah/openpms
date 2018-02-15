@@ -83,6 +83,8 @@ create table `us_users` (
 `adress` varchar(200),
 `tel` varchar(10),
  url_picture varchar(150)
+ 
+ PRIMARY KEY (`id`)
 );
 	
 	CREATE TABLE `us_status` (
