@@ -29,5 +29,16 @@ public class ProjectServiceImpl implements ProjectService {
 	public void create(Project p) {
 		projectRepository.save(p);
 	}
+
+	@Override
+	public void update(Integer id , Project p) {
+		projectRepository.save(p);
+	}
+	
+	@Override
+	public void delete(Integer id) {
+		projectRepository.delete(id);
+	}
+	
 	
 }

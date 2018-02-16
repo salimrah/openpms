@@ -1,16 +1,16 @@
 package ma.cndh.openpms.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ma.cndh.openpms.domain.Project;
@@ -26,29 +26,24 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService ;
 	
-	@GetMapping("/list")
-	public String index(Model model,@RequestParam(required=false,defaultValue="MESSAGE DOESNT EXIST") String msg) {
-		model.addAttribute("msg",msg);
-		LOGGER.info("List of projects executed Queary param {}",msg);
-		return "main" ;
-	}
-	
-	@GetMapping("/listprj")
+	@GetMapping({"/","/index"})
 	@ResponseBody
-	public List<Project> listProjects(){
-		return  projectService.findAll();
+	public List<Project> index() {
+		return projectService.findAll() ;
 	}
 	
-	@GetMapping("/test")
+	@GetMapping("/{id}/view")
 	@ResponseBody
-	public List<String> test(){
-		List<String> mylist = new ArrayList<>();
-		mylist.add("String");
-		mylist.add("hello");
-		mylist.add("Test");
-		return  mylist;
+	public Project findById(@PathVariable Integer id) {
+		return projectService.findOne(id);
 	}
 	
-	
+	@PostMapping("/create")
+	@ResponseBody
+	public void create(@RequestBody Project project) {
+		LOGGER.debug("creating new project .... {}",project.toString());
+		System.out.println("show values : "+project.toString());
+		projectService.create(project);
+	}
 	
 }

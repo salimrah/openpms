@@ -9,5 +9,7 @@ public interface ProjectService {
 	public List<Project> findAll();
 	public Project findOne(Integer id);
 	public void create(Project p);
+	public void update(Integer id , Project p);
+	public void delete(Integer id);
 
 }
