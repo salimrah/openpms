@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ma.cndh.openpms.domain.Project;
+import ma.cndh.openms.helper.PrjProjectHelper;
+import ma.cndh.openpms.domain.PrjProject;
 import ma.cndh.openpms.service.ProjectService;
 
 
@@ -35,8 +37,13 @@ public class ProjectController {
 	
 	@GetMapping("/listprj")
 	@ResponseBody
-	public List<Project> listProjects(){
-		return  projectService.findAll();
+	public List<PrjProjectHelper> listProjects(){
+		
+		List<PrjProjectHelper>  list=new ArrayList();
+		projectService.findAll().forEach(e->{
+			list.add(new PrjProjectHelper(e));
+		});
+		return list;
 	}
 	
 	@GetMapping("/test")
@@ -47,6 +54,12 @@ public class ProjectController {
 		mylist.add("hello");
 		mylist.add("Test");
 		return  mylist;
+	}
+	
+	@GetMapping("/limit/{size}")
+	@ResponseBody
+	public List<PrjProject> getLimitedProject(@PathVariable("size") int size){
+		return projectService.findall(size);
 	}
 	
 	

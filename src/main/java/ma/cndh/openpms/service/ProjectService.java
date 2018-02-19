@@ -2,12 +2,14 @@ package ma.cndh.openpms.service;
 
 import java.util.List;
 
-import ma.cndh.openpms.domain.Project;
+import ma.cndh.openpms.domain.PrjProject;
+
 
 
 public interface ProjectService {
-	public List<Project> findAll();
-	public Project findOne(Integer id);
-	public void create(Project p);
+	public List<PrjProject> findAll();
+	public PrjProject findOne(Integer id);
+	public void create(PrjProject p);
+	public List<PrjProject> findall(int size);
 
 }
