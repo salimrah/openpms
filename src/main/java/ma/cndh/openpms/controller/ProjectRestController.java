@@ -38,7 +38,6 @@ public class ProjectRestController {
 
 	@PostMapping("/add")
 	public void add(@RequestBody Project project) {
-		LOGGER.info("creating new project .... {}", project.toString());
 		projectService.create(project);
 	}
 
